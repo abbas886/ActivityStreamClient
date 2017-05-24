@@ -20,7 +20,8 @@ app.config(function($routeProvider) {
 	    
 	  })
 	   .when('/home', {
-	    templateUrl : 'activity_stream_components/Home/home.html',
+	    templateUrl : 'activity_stream_components/Home/user_home.html',
+	    controller: "UserController"
 	    
 	  })
 	  

@@ -22,6 +22,25 @@ app
 													
 							};
 							
+							self.myInBox =  {
+			              		"userID" : "",
+			              		"senderID" : "",
+			              		"circleID" : "",
+			              		"streamType" : "",
+			              		"tag" : "",
+			              		"message" : "",
+			              		"postedDate" : "",
+
+			              	}
+							self.myCircles = []
+							self.userHome=
+								{
+									"myCircles" : [],
+									"myInBox"  : [],
+									              "errorCode" : "",
+									              "errorMessage" : ""
+								}
+							
 								self.createUser = function(user) {
 								console.log("createUser...")
 								UserService.createUser(user)
@@ -39,20 +58,22 @@ app
 
 												function(d) {
 
-													self.user = d;
+													self.userHome = d;
 													console
 															.log("user.errorCode: "
 																	+ self.user.errorCode)
-													if (self.user.errorCode == "404")
+													if (self.userHome.errorCode == "404")
 
 													{
-														alert(self.user.errorMessage)
+														alert(self.userHome.errorMessage)
 
 														self.user.id = "";
 														self.user.password = "";
 
 													} else
 														{
+														self.myCircles = self.userHome.myCircles;
+														$rootScope.myCircles = self.userHome.myCircles;
 														$location.path("home")
 														}
 														
