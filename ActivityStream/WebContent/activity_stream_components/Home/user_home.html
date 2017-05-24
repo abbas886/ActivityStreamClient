@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Activity Stream</title>
+
+</head>
+<body>
+
+	<div class="container-fluid" ng-controller="UserController as ctrl">
+		<div class="row content">
+			<div class="col-sm-3 sidenav">
+
+				<ul class="nav nav-pills nav-stacked">
+					<li class="active"><a href="#section1">All Circles</a></li>
+					<h2>My Circles</h2>
+
+					<div ng-repeat="circle in myCircles">
+					{{ $index + 1 }}
+					<p>
+						<a href="#" ng-click="ctrl.getMyCircleMessages(circle)">
+							{{circle}}</a>
+					</p>
+					</div>
+					
+
+				</ul>
+				<br>
+				<div class="input-group">
+					<input type="text" class="form-control"
+						placeholder="Search Circle.."> <span
+						class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+				</div>
+			</div>
+
+			<div class="col-sm-9">
+				<h4>
+					<small>RECENT POSTS</small>
+				</h4>
+				<hr>
+	
+
+				<div ng-repeat="userStream in myInBox">
+				
+				<p>{{ $index + 1 }}</p>
+				<p>{{userStream.userID}}</p>
+				<h5>
+					<span class="label label-success">{{userStream.senderID}}</span>
+				</h5>
+				<br>
+				<p>{{userStream.circleID}}</p>
+				<p>{{userStream.streamType}}</p>
+				<h5>
+					<span class="label label-primary">{{userStream.tag}}</span>
+				</h5>
+				<br>
+				<p>{{userStream.message}}</p>
+
+				<h5>
+					<span class="glyphicon glyphicon-time"></span>
+					{{userStream.postedDate}}
+				</h5>
+				</div>
+				
+
+			
+
+
+
+				<form role="form">
+					<div class="form-group">
+						<textarea class="form-control" rows="3" required></textarea>
+					</div>
+					<button type="submit" class="btn btn-success">Submit</button>
+				</form>
+				<br>
+				<br>
+
+
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+</html>
