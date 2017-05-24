@@ -8,80 +8,66 @@ app
 						'$location',
 						'$rootScope',
 						'$http',
-						function($scope, $location, $rootScope) {
+						'UserService',
+						
+						function($scope, $location, $rootScope,$http,UserService) {
 							console.log("UserController...")
 						 var self = this;
 							self.user = {
 								id : '',
 								name : '',
 								password : '',
+								errorCode : '',
+								errorMessage : ''
 													
 							};
 							
-							self.userLoggedIn="";
-
-							self.currentUser = {
-								id : '',
-								name : '',
-								password : '',
-								
-								
-							};
-
-							self.users = []; // json array
-
-						
-							// self.fatchAllUsers();
-
-							self.createUser = function(user) {
+								self.createUser = function(user) {
 								console.log("createUser...")
-								UserService
-										.createUser(user)
-										.then(
-												function(d) {
-													alert("Thank you for registration")
-													$location.path("/")
-												},
-												function(errResponse) {
-													console
-															.error('Error while creating User.');
-												});
+								UserService.createUser(user)
+										
 							};
 
 						
 
-							self.authenticate = function(user) {
+							self.validate = function(user) {
 								console.log("authenticate...")
-								if(user.id=='niit' && user.password=='niit'){
-									alert('valid credentials')
-									$location.path("/home")
-								}
-								else
-									{
-									alert('invalid credentials')
-									}
+								
+								UserService
+										.validate(user)
+										.then(
+
+												function(d) {
+
+													self.user = d;
+													console
+															.log("user.errorCode: "
+																	+ self.user.errorCode)
+													if (self.user.errorCode == "404")
+
+													{
+														alert(self.user.errorMessage)
+
+														self.user.id = "";
+														self.user.password = "";
+
+													} else
+														{
+														$location.path("home")
+														}
+														
+										
+										
+																					
+							})};
+
 						
-							};
-
-							self.logout = function() {
-								console.log("logout")
-								self.userLoggedIn="false"
-								$rootScope.currentUser = {};
-								$cookieStore.remove('currentUser');
-								UserService.logout()
-								$location.path('/');
-
-							}
-
-							// self.fetchAllUsers(); //calling the method
-
-							// better to call fetchAllUsers -> after login ???
-
 							self.login = function() {
 								{
 									console.log('login validation????????',
 											self.user);
-									self.authenticate(self.user);
+									self.validate(self.user);
+									
 								}
 
 							};

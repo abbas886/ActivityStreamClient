@@ -6,14 +6,17 @@ app.config(function($routeProvider) {
 
 	  .when('/', {
 	    templateUrl : 'activity_stream_components/User/login.html',
+	    controller: "UserController"
 	    
 	  })
 	  .when('/toregister', {
 	    templateUrl : 'activity_stream_components/User/register.html',
+	    controller: "UserController"
 	    
 	  })
 	  .when('/tologin', {
 	    templateUrl : 'activity_stream_components/User/login.html',
+	    controller: "UserController"
 	    
 	  })
 	   .when('/home', {
