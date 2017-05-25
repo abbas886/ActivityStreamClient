@@ -51,8 +51,6 @@ app.factory('UserService',['$http', '$rootScope', function($http,$rootScope){
 	
 	userService.refresh=function(){
 		console.log('Calling refresh')
-		console.log('Entering - submit function in userservice')
-
 		return $http.get(BASE_URL + "/refresh/")
 		.then(
                 function(response){
@@ -63,6 +61,16 @@ app.factory('UserService',['$http', '$rootScope', function($http,$rootScope){
 					$rootScope.userHome = userService.userHome
 			
                     return response.data;
+                }
+        );
+	}
+	
+	userService.getUserHome=function(){
+		console.log('Calling getUserHome')
+		return $http.get(BASE_URL + "/refresh/")
+		.then(
+                function(response){
+                  return response.data;
                 }
         );
 	}

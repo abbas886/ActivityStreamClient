@@ -73,11 +73,25 @@ app
 							};
 
 							
-							self.refresh = function()
+							self.getUserHome = function()
 							{
-								console.log("Calling refresh....")
-								
+								console.log("Calling getUserHome....")
+								$rootScope.selectedCircle = "ALL"
+									UserService.getUserHome()
+									.then(
+											function(d)
+											{
+												self.userHome = d;
+												$rootScope.myCircles = self.userHome.myCircles;
+
+												$rootScope.myInBox = self.userHome.myInBox;
+												$rootScope.userHome = self.userHome
+												$location.path("home")		
+											}
+									)
+																						
 							}
+						
 						
 
 							self.validate = function(user) {

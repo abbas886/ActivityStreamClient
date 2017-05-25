@@ -34,23 +34,12 @@ app.run( function ($rootScope, $location,$cookieStore, $http,UserService) {
 console.log("Refreshing....")
 	 $rootScope.$on('$locationChangeStart', function (event, next, current) {
 		 console.log("$locationChangeStart")
-		 var userPages = ['/home']
-		 var adminPages = ["/create_circle","/add_user_to_circle"]
-		 
-		 var currentPage = $location.path()
-		 
-		 //will return 0 if current page is there in list
-		 //else return -1
-		 var isUserPage = $.inArray(currentPage, userPages)
-		 var isAdminPage = $.inArray(currentPage, adminPages)
-		 
-		 var isLoggedIn = $rootScope.currentUser.id;
-	        
-	     console.log("isLoggedIn:" +isLoggedIn)
-	     console.log("isUserPage:" +isUserPage)
-	     console.log("isAdminPage:" +isAdminPage)
-	        
-	     UserService.refresh();
+		
+	    if(next===current && $rootScope.selectedCircle!='')
+	    	{
+	    	 UserService.refresh();
+	    	}
+	    
 	      
 			
 	 }
