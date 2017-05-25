@@ -22,7 +22,6 @@ app
 													
 							};
 							
-<<<<<<< HEAD
 							self.userStream = {
 									
 									"userID" : "",
@@ -38,7 +37,6 @@ app
 			              		
 
 			              	
-=======
 							self.myInBox =  {
 			              		"userID" : "",
 			              		"senderID" : "",
@@ -49,7 +47,6 @@ app
 			              		"postedDate" : "",
 
 			              	}
->>>>>>> branch 'master' of https://github.com/abbas886/ActivityStreamClient.git
 							self.myCircles = []
 							self.userHome=
 								{
@@ -92,10 +89,9 @@ app
 														{
 														self.myCircles = self.userHome.myCircles;
 														$rootScope.myCircles = self.userHome.myCircles;
-<<<<<<< HEAD
+
 														$rootScope.myInBox = self.userHome.myInBox;
-=======
->>>>>>> branch 'master' of https://github.com/abbas886/ActivityStreamClient.git
+
 														$location.path("home")
 														}
 														
