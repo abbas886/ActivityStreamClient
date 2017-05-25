@@ -124,6 +124,11 @@ app
 										
 																					
 							})};
+							
+							self.getMyCircleMessages=function(circle)
+							{
+								
+							}
 
 						
 							self.login = function() {
