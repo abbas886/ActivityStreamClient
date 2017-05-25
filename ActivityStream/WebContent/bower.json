@@ -20,6 +20,7 @@
     "bootstrap": "^3.3.7",
     "angular": "1.4.7",
     "angular-route": "1.4.7",
+     "angular-cookies": "1.4.7",
     "jquery": "^3.2.1"
   }
 }

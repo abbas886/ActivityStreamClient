@@ -8,9 +8,10 @@ app
 						'$location',
 						'$rootScope',
 						'$http',
+						'$cookieStore',
 						'UserService',
 						
-						function($scope, $location, $rootScope,$http,UserService) {
+						function($scope, $location, $rootScope,$http,$cookieStore,UserService) {
 							console.log("UserController...")
 						 var self = this;
 							self.user = {
@@ -21,6 +22,15 @@ app
 								errorMessage : ''
 													
 							};
+							
+							self.currentUser = {
+									id : '',
+									name : '',
+									password : '',
+									errorCode : '',
+									errorMessage : ''
+														
+								};
 							
 							self.userStream = {
 									
@@ -62,6 +72,12 @@ app
 										
 							};
 
+							
+							self.refresh = function()
+							{
+								console.log("Calling refresh....")
+								
+							}
 						
 
 							self.validate = function(user) {
@@ -91,6 +107,15 @@ app
 														$rootScope.myCircles = self.userHome.myCircles;
 
 														$rootScope.myInBox = self.userHome.myInBox;
+														$rootScope.userHome = self.userHome
+														$rootScope.currentUser = user
+														$cookieStore.put(
+																'currentUser',
+																user);
+
+														$http.defaults.headers.common['Authorization'] = 'Basic '
+																+ $rootScope.currentUser;
+														
 
 														$location.path("home")
 														}
