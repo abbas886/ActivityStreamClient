@@ -96,6 +96,17 @@ app.factory('UserService',['$http', '$rootScope', function($http,$rootScope){
                 }
         );
 	}
+	userService.getMyCircleMessages=function(circle)
+	{
+		console.log('Calling getMyCircleMessages' + circle)
+		return $http.get(BASE_URL + "/circle_messages/"+circle)
+		.then(
+                function(response){
+                  return response.data;
+                }
+        );
+		
+	}
 		
 		userService.registerUser=function(user){
 			return $http.post(BASE_URL + "/register/",user) 

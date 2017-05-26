@@ -116,7 +116,8 @@ self.stream = {
 							   self.userStream.postedDate=currentTimeString;
 							   self.userStream.streamType='String';
 							   self.userStream.tag='Message'
-								   self.userStream.message=message
+							   self.userStream.message=message
+							   self.userStream.circleID=$rootScope.selectedCircle
 							   UserService.send(self.userStream);
 							   console.log('send message successfully')
 						   }
@@ -168,7 +169,23 @@ self.stream = {
 							
 							self.getMyCircleMessages=function(circle)
 							{
-								
+								console.log('getMyCircleMessages'+circle)
+								$rootScope.selectedCircle = circle
+								UserService
+								.getMyCircleMessages(circle)
+								.then(
+
+										function(d) {
+
+											self.userHome = d;
+											self.myCircles = self.userHome.myCircles;
+											$rootScope.myCircles = self.userHome.myCircles;
+
+											$rootScope.myInBox = self.userHome.myInBox;
+											$rootScope.userHome = self.userHome
+											$location.path("home")
+										}
+										)
 							}
 
 						
