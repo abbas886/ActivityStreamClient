@@ -96,9 +96,9 @@ footer {
 				</div>
 
 				<h4>Post Message:</h4>
-				<form role="form">
+				<form ng-submit="ctrl.send()" role="form">
 					<div class="form-group">
-						<textarea class="form-control" rows="3" required></textarea>
+						<textarea class="form-control" rows="3" ng-model="ctrl.stream.message" required></textarea>
 					</div>
 					<button type="submit" class="btn btn-success">Submit</button>
 				</form>

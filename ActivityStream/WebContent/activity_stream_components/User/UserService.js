@@ -14,6 +14,18 @@ app.factory('UserService',['$http', '$rootScope', function($http,$rootScope){
 				              		"message" : "",
 				              		"postedDate" : "",
 							}
+	
+	userService.stream = {
+		"id":"",
+		"parentID":"",
+		"receiverID" : "",
+  		"senderID" : "",
+  		"circleID" : "",
+  		"streamType" : "",
+  		"tag" : "",
+  		"message" : "",
+  		"postedDate" : "",
+}
 							
 	userService.myInBox =  []
 			              		
@@ -68,6 +80,16 @@ app.factory('UserService',['$http', '$rootScope', function($http,$rootScope){
 	userService.getUserHome=function(){
 		console.log('Calling getUserHome')
 		return $http.get(BASE_URL + "/refresh/")
+		.then(
+                function(response){
+                  return response.data;
+                }
+        );
+	}
+	
+	userService.send=function(userStream){
+		console.log('Calling getUserHome')
+		return $http.post(BASE_URL + "/send/",userStream)
 		.then(
                 function(response){
                   return response.data;

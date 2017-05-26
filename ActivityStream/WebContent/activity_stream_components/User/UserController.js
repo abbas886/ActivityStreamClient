@@ -23,6 +23,7 @@ app
 													
 							};
 							
+														
 							self.currentUser = {
 									id : '',
 									name : '',
@@ -33,6 +34,17 @@ app
 								};
 							
 							self.userStream = {
+									
+									"userID" : "",
+				              		"senderID" : "",
+				              		"circleID" : "",
+				              		"streamType" : "",
+				              		"tag" : "",
+				              		"message" : "",
+				              		"postedDate" : "",
+							}
+							
+self.stream = {
 									
 									"userID" : "",
 				              		"senderID" : "",
@@ -92,7 +104,22 @@ app
 																						
 							}
 						
-						
+						  self.send =function()
+						  {
+							  self.sendMessage(self.stream.message)
+						  }
+						   self.sendMessage = function(message)
+						   {
+							   console.log('sending message..')
+							   var currentTime = new Date();
+							   var currentTimeString = currentTime.toUTCString();
+							   self.userStream.postedDate=currentTimeString;
+							   self.userStream.streamType='String';
+							   self.userStream.tag='Message'
+								   self.userStream.message=message
+							   UserService.send(self.userStream);
+							   console.log('send message successfully')
+						   }
 
 							self.validate = function(user) {
 								console.log("authenticate...")
