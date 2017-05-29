@@ -10,8 +10,9 @@ app
 						'$http',
 						'$cookieStore',
 						'UserService',
+						'CircleService',
 						
-						function($scope, $location, $rootScope,$http,$cookieStore,UserService) {
+						function($scope, $location, $rootScope,$http,$cookieStore,UserService,CircleService) {
 							console.log("UserController...")
 						 var self = this;
 							self.user = {
@@ -22,6 +23,8 @@ app
 								errorMessage : ''
 													
 							};
+							
+						
 							
 														
 							self.currentUser = {
@@ -74,9 +77,39 @@ self.stream = {
 								{
 									"myCircles" : [],
 									"myInBox"  : [],
-									              "errorCode" : "",
-									              "errorMessage" : ""
+									"errorCode" : "",
+									"errorMessage" : "",
+										"circleSize" : ""
 								}
+							
+							
+							
+							self.circle ={
+									
+									"name" : "",
+									"adminID": "",
+									"createdDate":"",
+									"status" :""
+							
+							}
+							self.circles=[]
+							
+							self.getCircles = function()
+							{
+								console.log("Calling getCircles....")
+								
+									CircleService.getCircles()
+									.then(
+											function(d)
+											{
+												//self.circles = d;
+												$rootScope.circles=d
+												
+												$location.path("circle")		
+											}
+									)
+																						
+							}
 							
 								self.createUser = function(user) {
 								console.log("createUser...")
@@ -103,6 +136,8 @@ self.stream = {
 									)
 																						
 							}
+							
+							
 						
 						  self.send =function()
 						  {

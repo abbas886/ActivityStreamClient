@@ -96,6 +96,9 @@ app.factory('UserService',['$http', '$rootScope', function($http,$rootScope){
                 }
         );
 	}
+	
+	
+
 	userService.getMyCircleMessages=function(circle)
 	{
 		console.log('Calling getMyCircleMessages' + circle)

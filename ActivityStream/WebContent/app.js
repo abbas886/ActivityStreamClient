@@ -25,12 +25,19 @@ app.config(function($routeProvider) {
 	    
 	  })
 	  
+	   .when('/circle', {
+	    templateUrl : 'activity_stream_components/Circle/circle.html',
+	    controller: "UserController"
+	    
+	  })
+	  
+	  
 	 
 
 	  .otherwise({redirectTo: '/'});
 	});
 
-app.run( function ($rootScope, $location,$cookieStore, $http,UserService) {
+app.run( function ($rootScope, $location,$cookieStore, $http,UserService,CircleService) {
 console.log("Refreshing....")
 	 $rootScope.$on('$locationChangeStart', function (event, next, current) {
 		 console.log("$locationChangeStart")
@@ -38,6 +45,7 @@ console.log("Refreshing....")
 	    if(next===current && $rootScope.selectedCircle!='')
 	    	{
 	    	 UserService.refresh();
+	    	 CircleService.getCircles();
 	    	}
 	    
 	      
