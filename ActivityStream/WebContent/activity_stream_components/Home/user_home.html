@@ -44,6 +44,11 @@ footer {
 <body>
 
 	<div class="container-fluid" ng-controller="UserController as ctrl">
+	<div class="nav navbar-nav navbar-left">
+			Welcome : {{currentUser.id}} | <a href="#" ng-click="ctrl.logout()">
+				Logout </a>
+		</div>  </br></br></br>
+	
 		<div class="row content">
 			<div class="col-sm-3 sidenav">
 				<ul class="nav nav-pills nav-stacked">

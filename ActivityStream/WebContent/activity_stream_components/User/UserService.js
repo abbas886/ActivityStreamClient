@@ -119,7 +119,16 @@ app.factory('UserService',['$http', '$rootScope', function($http,$rootScope){
                     }
             );
 		}
-		
+		userService.logout=function(){
+        	console.log('logout....')
+            return $http.get(BASE_URL+'/logout')
+                    .then(
+                            function(response){
+                            	alert(response.data.errorMessage)
+                                return response.data;
+                            }
+                    );
+		}
 		
 		
 		return userService;

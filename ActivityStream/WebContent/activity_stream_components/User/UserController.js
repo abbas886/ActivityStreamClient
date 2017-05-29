@@ -223,7 +223,17 @@ self.stream = {
 										)
 							}
 
-						
+							self.logout = function() {
+								console.log("logout")
+								self.userLoggedIn="false"
+								$rootScope.myCircles = {};
+								$rootScope.myInBox = {};
+								$rootScope.userHome = {};
+								$rootScope.currentUser={}
+								UserService.logout()
+								$location.path('/');
+
+							}
 							self.login = function() {
 								{
 									console.log('login validation????????',

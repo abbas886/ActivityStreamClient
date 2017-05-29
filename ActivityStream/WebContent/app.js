@@ -41,6 +41,14 @@ app.run( function ($rootScope, $location,$cookieStore, $http,UserService,CircleS
 console.log("Refreshing....")
 	 $rootScope.$on('$locationChangeStart', function (event, next, current) {
 		 console.log("$locationChangeStart")
+		 
+		 
+		 console.log("$rootScope.currentUser " + $rootScope.currentUser)
+		 console.log("$location.path(): " + $location.path())
+		 if($rootScope.currentUser=="" || $location.path()=='/' ||  $location.path()=="")
+			 {
+			 return;
+			 }
 		
 	    if(next===current && $rootScope.selectedCircle!='')
 	    	{
@@ -55,9 +63,9 @@ console.log("Refreshing....")
 	 
 	 
 	 // keep user logged in after page refresh
-    $rootScope.currentUser = $cookieStore.get('currentUser') || {};
+   /* $rootScope.currentUser = $cookieStore.get('currentUser') || {};
     if ($rootScope.currentUser) {
         $http.defaults.headers.common['Authorization'] = 'Basic' + $rootScope.currentUser; 
-    }
+    }*/
 
 });
