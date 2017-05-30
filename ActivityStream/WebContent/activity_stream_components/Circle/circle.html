@@ -40,6 +40,7 @@ Search Circle : <input type="text" ng-model="searchKeyword">
 
 				<td>{{ $index + 1 }}</td>
 				<td>{{circleUser.userID}}</td>
+<<<<<<< HEAD
 				<td><a href="#" ng-click="ctrl.removeUserFromCircle(circleUser.userID)"> (-) </a></td>
 			</tr>
 		</table>
@@ -55,6 +56,21 @@ Search Circle : <input type="text" ng-model="searchKeyword">
 				<td>{{ $index + 1 }}</td>
 				<td>{{id}}</td>
 				<td><a href="#" ng-click="ctrl.addUserToCircle(id)"> (+) </a></td>
+=======
+			</tr>
+		</table>
+		
+		<h3><a href="#" ng-click="ctrl.getOtherUsers()">Add users to circle {{selectedCircle}}</a></h3>
+		
+		
+		
+		<table border="2">
+			
+			<tr ng-repeat="id in otherUserIds">
+
+				<td>{{ $index + 1 }}</td>
+				<td>{{id}}</td>
+>>>>>>> branch 'master' of https://github.com/abbas886/ActivityStreamClient.git
 				
 			</tr>
 		
