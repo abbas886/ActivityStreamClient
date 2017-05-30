@@ -24,11 +24,47 @@ Search Circle : <input type="text" ng-model="searchKeyword">
 			<tr ng-repeat="circle in circles | filter: searchKeyword">
 
 				<td>{{ $index + 1 }}</td>
-				<td>{{circle.name}}</td>
+				<td> <a href="#" ng-click="ctrl.getCircleUsers(circle.name)"> {{circle.name}}</a>   </td>
 				<td>{{circle.adminID}}</td>
 				<td>{{circle.createdDate}}</td>
 				<td>{{circle.status}}</td>
 			</tr>
 		</table>
+		</br></br></br>
+		<hr>
+		
+		<h2>List of users in the circle {{selectedCircle}}</h2>
+			<table border="2">
+			
+			<tr ng-repeat="circleUser in circleUsers">
+
+				<td>{{ $index + 1 }}</td>
+				<td>{{circleUser.userID}}</td>
+			</tr>
+		</table>
+		
+		<h3><a href="#" ng-click="ctrl.getOtherUsers()">Add users to circle {{selectedCircle}}</a></h3>
+		
+		
+		
+		<table border="2">
+			
+			<tr ng-repeat="id in otherUserIds">
+
+				<td>{{ $index + 1 }}</td>
+				<td>{{id}}</td>
+				
+			</tr>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 </div>
