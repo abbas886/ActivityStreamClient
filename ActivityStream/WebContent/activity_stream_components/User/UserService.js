@@ -110,6 +110,19 @@ app.factory('UserService',['$http', '$rootScope', function($http,$rootScope){
         );
 		
 	}
+	
+	userService.getAllUsers=function()
+	{
+		console.log('Calling getAllUsers')
+		return $http.get(BASE_URL + "/users/")
+		.then(
+                function(response){
+                  return response.data;
+                }
+        );
+		
+	}
+	
 		
 		userService.registerUser=function(user){
 			return $http.post(BASE_URL + "/register/",user) 
