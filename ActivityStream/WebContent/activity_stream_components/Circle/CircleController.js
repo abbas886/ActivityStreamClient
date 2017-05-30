@@ -102,7 +102,7 @@ app
 											}
 									)
 						}
-<<<<<<< HEAD
+
 						
 						self.addUserToCircle = function(userID)
 						{
@@ -135,8 +135,8 @@ app
 									)
 							
 						}
-=======
->>>>>>> branch 'master' of https://github.com/abbas886/ActivityStreamClient.git
+
+
 							
 							
 						
