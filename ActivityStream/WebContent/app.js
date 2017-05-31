@@ -63,9 +63,9 @@ console.log("Refreshing....")
 	 
 	 
 	 // keep user logged in after page refresh
-   /* $rootScope.currentUser = $cookieStore.get('currentUser') || {};
+    $rootScope.currentUser = $cookieStore.get('currentUser') || {};
     if ($rootScope.currentUser) {
         $http.defaults.headers.common['Authorization'] = 'Basic' + $rootScope.currentUser; 
-    }*/
+    }
 
 });

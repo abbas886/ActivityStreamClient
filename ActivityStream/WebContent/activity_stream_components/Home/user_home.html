@@ -44,16 +44,18 @@ footer {
 <body>
 
 	<div class="container-fluid" ng-controller="UserController as ctrl">
-	<div class="nav navbar-nav navbar-left">
+		<div class="nav navbar-nav navbar-left">
 			Welcome : {{currentUser.id}} | <a href="#" ng-click="ctrl.logout()">
 				Logout </a>
-		</div>  </br></br></br>
-	
+		</div>
+		</br>
+		</br>
+		</br>
+
 		<div class="row content">
 			<div class="col-sm-3 sidenav">
 				<ul class="nav nav-pills nav-stacked">
-					<li class="active"><a href="#"
-							ng-click="ctrl.getCircles()">Circles({{userHome.circleSize}})</a></li>
+					<li class="active"><a href="#" ng-click="ctrl.getCircles()">Circles({{userHome.circleSize}})</a></li>
 					<h2>My Circles</h2>
 
 					<div ng-repeat="circle in myCircles">
@@ -95,20 +97,25 @@ footer {
 						{{userStream.postedDate}}
 					</h5>
 
-					{{userStream.message}} </br>
-					</br>
+					{{userStream.message}} </br> </br>
 
 				</div>
-
+         
 				<h4>Post Message:</h4>
+				<div ng-show="ctrl.isOneToOne=='1'"> 
+				<select ng-model="ctrl.selectedUserID" ng-change="ctrl.setSelectedUser()" 
+					ng-options="id for id in ctrl.otherUserIds">
+				</select> {{ctrl.selectedUserID}}
+				</div>
 				<form ng-submit="ctrl.send()" role="form">
 					<div class="form-group">
-						<textarea class="form-control" rows="3" ng-model="ctrl.stream.message" required></textarea>
+						<textarea class="form-control" rows="3"
+							ng-change="ctrl.showUsers()" value={{ctrl.selectedUserID}}
+							ng-model="ctrl.stream.message" required></textarea>
 					</div>
 					<button type="submit" class="btn btn-success">Submit</button>
 				</form>
-				<br>
-				<br>
+				<br> <br>
 
 			</div>
 		</div>
