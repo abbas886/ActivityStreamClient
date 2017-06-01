@@ -47,7 +47,9 @@ app
 
 							self.stream = {
 
-								"userID" : "",
+								//"userID" : "",
+									"id":"",
+								"receiverID":"",
 								"senderID" : "",
 								"circleID" : "",
 								"streamType" : "",
@@ -134,6 +136,8 @@ app
 								self.userStream.streamType = 'String';
 								self.userStream.tag = 'Message'
 								self.userStream.message = message
+								self.userStream.receiverID=self.selectedUserID;
+								self.userStream.senderID=$rootScope.currentUser.id
 								self.userStream.circleID = $rootScope.selectedCircle
 								UserService.send(self.userStream);
 								console.log('send message successfully')
