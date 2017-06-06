@@ -48,9 +48,7 @@ footer {
 			Welcome : {{currentUser.id}} | <a href="#" ng-click="ctrl.logout()">
 				Logout </a>
 		</div>
-		</br>
-		</br>
-		</br>
+		</br> </br> </br>
 
 		<div class="row content">
 			<div class="col-sm-3 sidenav">
@@ -100,25 +98,28 @@ footer {
 					{{userStream.message}} </br> </br>
 
 				</div>
-         
-				<h4>Post Message:</h4>
-				<div ng-show="ctrl.isOneToOne=='1'"> 
-				<select ng-model="ctrl.selectedUserID" ng-change="ctrl.setSelectedUser()" 
-					ng-options="id for id in ctrl.otherUserIds">
-				</select> {{ctrl.selectedUserID}}
-				</div>
-				<form ng-submit="ctrl.send()" role="form">
-					<div class="form-group">
-						<textarea class="form-control" rows="3"
-							ng-change="ctrl.showUsers()" value={{ctrl.selectedUserID}}
-							ng-model="ctrl.stream.message" required></textarea>
-					</div>
-					<button type="submit" class="btn btn-success">Submit</button>
-				</form>
-				<br> <br>
 
+				<h4>Post Message:</h4>
+				<div ng-show="ctrl.isOneToOne=='1'">
+					<select ng-model="ctrl.selectedUserID"
+						ng-change="ctrl.setSelectedUser()"
+						ng-options="id for id in ctrl.otherUserIds">
+					</select> {{ctrl.selectedUserID}}
+				</div>
+				<!-- <div ng-controller="FileUploadController">
+					<input type="file" file-model="myFile" />
+					<button ng-click="uploadFile()">upload me</button>
+				</div> -->
+				<textarea class="form-control" rows="3" ng-change="ctrl.showUsers()"
+					value={{ctrl.selectedUserID}} ng-model="ctrl.stream.message"
+					required></textarea>
 			</div>
+			<button type="submit" class="btn btn-success">Submit</button>
+			</form>
+			<br> <br>
+
 		</div>
+	</div>
 	</div>
 
 

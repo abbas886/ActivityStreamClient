@@ -11,9 +11,11 @@ app
 						'$cookieStore',
 						'UserService',
 						'CircleService',
+						
 
 						function($scope, $location, $rootScope, $http,
-								$cookieStore, UserService, CircleService) {
+								$cookieStore, UserService, CircleService
+								) {
 							console.log("UserController...")
 							var self = this;
 							self.user = {
@@ -34,28 +36,27 @@ app
 
 							};
 
-							self.userStream = {
-
-								"userID" : "",
-								"senderID" : "",
-								"circleID" : "",
-								"streamType" : "",
-								"tag" : "",
-								"message" : "",
-								"postedDate" : "",
-							}
+							/*
+							 * self.userStream = {
+							 * 
+							 * "userID" : "", "senderID" : "", "circleID" : "",
+							 * "streamType" : "", "tag" : "", "message" : "",
+							 * "postedDate" : "", }
+							 */
 
 							self.stream = {
 
-								//"userID" : "",
-									"id":"",
-								"receiverID":"",
+								// "userID" : "",
+								"id" : "",
+								"receiverID" : "",
 								"senderID" : "",
 								"circleID" : "",
 								"streamType" : "",
 								"tag" : "",
 								"message" : "",
 								"postedDate" : "",
+								"attachment" : "",
+								"attachmentURL" : "",
 							}
 
 							self.myInBox = []
@@ -104,6 +105,18 @@ app
 							self.createUser = function(user) {
 								console.log("createUser...")
 								UserService.createUser(user)
+								.then(
+										
+								function(d)
+								{
+									self.user=d
+									if(self.user.errorCode=='200')
+										{
+										alert("Successfully register.  You can login into the application ")
+										$location.path("/")
+										}
+								}
+								)
 
 							};
 
@@ -124,23 +137,33 @@ app
 
 							}
 
+							/*
+							 * self.send = function() {
+							 * self.sendMessage(self.stream.message) }
+							 */
 							self.send = function() {
-								self.sendMessage(self.stream.message)
-							}
-							self.sendMessage = function(message) {
 								console.log('sending message..')
 								var currentTime = new Date();
 								var currentTimeString = currentTime
 										.toUTCString();
-								self.userStream.postedDate = currentTimeString;
-								self.userStream.streamType = 'String';
-								self.userStream.tag = 'Message'
-								self.userStream.message = message
-								self.userStream.receiverID=self.selectedUserID;
-								self.userStream.senderID=$rootScope.currentUser.id
-								self.userStream.circleID = $rootScope.selectedCircle
-								UserService.send(self.userStream);
-								console.log('send message successfully')
+								self.stream.postedDate = currentTimeString;
+								self.stream.streamType = 'String';
+								self.stream.tag = 'Message'
+								// self.stream.message = message
+								self.stream.receiverID = self.selectedUserID;
+								self.stream.senderID = $rootScope.currentUser.id
+								self.stream.circleID = $rootScope.selectedCircle
+								// self.stream.attachmentURL =
+								// "D:\Softwares\Server\apache-tomcat-9.0.0.M6\apache-tomcat-9.0.0.M6\Upload"
+								UserService.send(self.stream);
+								console.log('sent message successfully')
+
+						/*		var formData = new FormData();
+								formData.append('file', self.stream.attachment);
+
+								// var file = self.stream.attachment
+								FileUploadService.uploadFile(formData);
+*/
 							}
 
 							self.validate = function(user) {
@@ -239,7 +262,7 @@ app
 									password : '',
 
 								};
-								$scope.myForm.$setPristine(); // reset Form
+								//$scope.myForm.$setPristine(); // reset Form
 							};
 
 							self.otherUserIds = []
@@ -280,11 +303,10 @@ app
 								}
 
 							}
-							
-							self.setSelectedUser = function()
-							{
-								self.stream.message = '@'
-									+ self.selectedUserID + "   "
+
+							self.setSelectedUser = function() {
+								self.stream.message = '@' + self.selectedUserID
+										+ "   "
 							}
 
 						} ]);

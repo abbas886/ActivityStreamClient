@@ -4,7 +4,7 @@ app.factory('UserService',['$http', '$rootScope', function($http,$rootScope){
 		console.log('UserService')
 		
 		
-		userService.userStream = {
+		/*userService.userStream = {
 									
 									"userID" : "",
 				              		"senderID" : "",
@@ -13,7 +13,7 @@ app.factory('UserService',['$http', '$rootScope', function($http,$rootScope){
 				              		"tag" : "",
 				              		"message" : "",
 				              		"postedDate" : "",
-							}
+							}*/
 	
 	userService.stream = {
 		"id":"",
@@ -87,9 +87,9 @@ app.factory('UserService',['$http', '$rootScope', function($http,$rootScope){
         );
 	}
 	
-	userService.send=function(userStream){
+	userService.send=function(stream){
 		console.log('Calling getUserHome')
-		return $http.post(BASE_URL + "/send/",userStream)
+		return $http.post(BASE_URL + "/send/",stream)
 		.then(
                 function(response){
                   return response.data;
@@ -124,7 +124,7 @@ app.factory('UserService',['$http', '$rootScope', function($http,$rootScope){
 	}
 	
 		
-		userService.registerUser=function(user){
+		userService.createUser=function(user){
 			return $http.post(BASE_URL + "/register/",user) 
 			.then(
                     function(response){
